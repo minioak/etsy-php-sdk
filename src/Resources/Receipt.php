@@ -37,6 +37,20 @@ class Receipt extends Resource {
     $this->_properties->shipments[] = $shipment;
     return $shipment;
   }
+  
+  /**
+   * Updates the status of a receipt, identified by a receipt id, from an Etsy shop.
+   *
+   * @link https://developers.etsy.com/documentation/reference#operation/updateShopReceipt
+   * @param array $data
+   * @return Etsy\Resources\Receipt
+   */
+  public function updateReceipt(array $data) {
+    return $this->updateRequest(
+      "/application/shops/{$this->shop_id}/receipts/{$this->receipt_id}",
+      $data
+    );
+  }
 
   /**
    * Gets all transactions for the receipt.
